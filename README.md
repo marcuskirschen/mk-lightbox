@@ -1,4 +1,4 @@
-# mk-lightbox
+# MK Lightbox
 A very simple pure javascript lightbox script for images and videos.
 
 ## Lightbox for images
