@@ -10,7 +10,7 @@ const svgIcons = {
 
 let mklbItems = document.getElementsByClassName('mklbItem');
 let lightboxContainer;
-let galerie;
+
 
 for (let i=0; i< mklbItems.length; i++) {
     let mklbItem = mklbItems[i];
@@ -25,8 +25,8 @@ function _mklbOpen(mklbItem) {
     overlay.id = 'overlay';
     lightboxContainer.appendChild(overlay);
 
-    if('galerie' in mklbItem.dataset) {
-        _mklbAddGalerie(mklbItem);
+    if('gallery' in mklbItem.dataset) {
+        _mklbAddGallery(mklbItem);
     } else if('videoSrc' in mklbItem.dataset) {
         lightboxContainer.appendChild(_mklbAddVideo(mklbItem));
     } else {
@@ -61,16 +61,16 @@ function _mklbAddVideo(item) {
     return video;
 }
 
-function _mklbAddGalerie(currentItem) {
-    galerie = [];
+function _mklbAddGallery(currentItem) {
+    let gallery = [];
     let index = 0;
 
     let mklbInner = document.createElement('div');
     mklbInner.id = 'mklbInner';
 
     for (let i=0; i < mklbItems.length; i++) {
-        if('galerie' in mklbItems[i].dataset) {
-            galerie.push(mklbItems[i]);
+        if('gallery' in mklbItems[i].dataset) {
+            gallery.push(mklbItems[i]);
             if(mklbItems[i] === currentItem) {
                 index = i;
             }
@@ -95,7 +95,7 @@ function _mklbAddGalerie(currentItem) {
 
     let next = document.createElement('div');
     next.id = 'next';
-    next.setAttribute('data-next', (index <= galerie.length) ? index+1 : 1);
+    next.setAttribute('data-next', (index <= gallery.length) ? index+1 : 1);
     next.innerHTML = svgIcons.next;
     let nextContainer = document.createElement('div');
     nextContainer.id = "nextContainer";
