@@ -10,6 +10,7 @@ const svgIcons = {
 
 let mklbItems = document.getElementsByClassName('mklbItem');
 let lightboxContainer;
+let galerie;
 
 for (let i=0; i< mklbItems.length; i++) {
     let mklbItem = mklbItems[i];
@@ -20,37 +21,106 @@ function _mklbOpen(mklbItem) {
     lightboxContainer = document.createElement('div');
     lightboxContainer.id = "mkLightboxContainer";
 
+    let overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    lightboxContainer.appendChild(overlay);
+
     if('galerie' in mklbItem.dataset) {
-        _mklbAddImage(mklbItem);
+        _mklbAddGalerie(mklbItem);
     } else if('videoSrc' in mklbItem.dataset) {
-        let video = document.createElement('video');
-        video.setAttribute('autoplay', true);
-        video.setAttribute('controls', true);
-
-        let source = document.createElement('source')
-        source.src = mklbItem.dataset.videoSrc;
-        source.type = 'video/mp4';
-
-        video.appendChild(source);
-        lightboxContainer.appendChild(video);
+        lightboxContainer.appendChild(_mklbAddVideo(mklbItem));
     } else {
-        _mklbAddImage(mklbItem);
+        lightboxContainer.appendChild(_mklbAddImage(mklbItem));
     }
 
     let closeIconContainer = document.createElement('div');
     closeIconContainer.id = "closeIconContainer";
     closeIconContainer.innerHTML = svgIcons.close;
     lightboxContainer.appendChild(closeIconContainer);
+    closeIconContainer.addEventListener('click', _closeLightbox)
 
     document.body.appendChild(lightboxContainer);
-
-    lightboxContainer.addEventListener('click', () => {
-        document.getElementById('mkLightboxContainer').remove()
-    })
+    overlay.addEventListener('click', _closeLightbox)
 }
 
 function _mklbAddImage(item) {
     let image = document.createElement('img');
+    image.id = 'mklbImage';
     image.src = ('src' in item.dataset) ? item.dataset.src : item.src;
-    lightboxContainer.appendChild(image);
+    return image;
+}
+
+function _mklbAddVideo(item) {
+    let video = document.createElement('video');
+    video.setAttribute('autoplay', true);
+    video.setAttribute('controls', true);
+    let source = document.createElement('source');
+    source.src = item.dataset.videoSrc;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    return video;
+}
+
+function _mklbAddGalerie(currentItem) {
+    galerie = [];
+    let index = 0;
+
+    let mklbInner = document.createElement('div');
+    mklbInner.id = 'mklbInner';
+
+    for (let i=0; i < mklbItems.length; i++) {
+        if('galerie' in mklbItems[i].dataset) {
+            galerie.push(mklbItems[i]);
+            if(mklbItems[i] === currentItem) {
+                index = i;
+            }
+            let imageContainer = document.createElement('section');
+            imageContainer.className = 'imageContainer';
+            imageContainer.appendChild((_mklbAddImage(mklbItems[i])));
+            mklbInner.appendChild(imageContainer);
+        };
+    }
+
+    mklbInner.style.marginLeft = (index-1) * (-100) + 'vw';
+    lightboxContainer.appendChild(mklbInner);
+
+    let prev = document.createElement('div');
+    prev.id = 'prev';
+    prev.innerHTML = svgIcons.prev;
+    let prevContainer = document.createElement('div');
+    prevContainer.id = "prevContainer";
+    prevContainer.appendChild(prev);
+    lightboxContainer.appendChild(prevContainer);
+    prevContainer.addEventListener('click', () => _mklbSlide(true));
+
+    let next = document.createElement('div');
+    next.id = 'next';
+    next.setAttribute('data-next', (index <= galerie.length) ? index+1 : 1);
+    next.innerHTML = svgIcons.next;
+    let nextContainer = document.createElement('div');
+    nextContainer.id = "nextContainer";
+    nextContainer.appendChild(next);
+    lightboxContainer.appendChild(nextContainer);
+    nextContainer.addEventListener('click', () => _mklbSlide(false));
+}
+
+function _closeLightbox() {
+    document.getElementById('mkLightboxContainer').remove()
+}
+
+function _mklbSlide(slideToPrev) {
+    let inner = document.getElementById('mklbInner');
+    let elements = document.getElementsByClassName('imageContainer').length;
+    let marginLeft = inner.style.marginLeft;
+    marginLeft = parseInt(marginLeft.slice(0, marginLeft.length-2));
+
+    if (slideToPrev && marginLeft === 0) {
+        inner.style.marginLeft = (elements - 1) * -100+'vw';
+    } else if (slideToPrev) {
+        inner.style.marginLeft = (marginLeft + 100)+'vw';
+    } else if(marginLeft === (elements-1) * -100) {
+        inner.style.marginLeft = '0vw';
+    } else {
+        inner.style.marginLeft = (marginLeft-100)+'vw';
+    }
 }
