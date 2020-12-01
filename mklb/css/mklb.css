@@ -63,7 +63,7 @@ section.imageContainer {
     box-shadow: 0 0 30px #222;
     max-height: 85vh;
     min-width: auto;
-    max-width: 85vw;
+    max-width: 75vw;
     width: auto;
     height: auto;
 }
