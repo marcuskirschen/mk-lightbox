@@ -9,6 +9,7 @@ const svgIcons = {
 }
 
 let mklbItems = document.getElementsByClassName('mklbItem');
+let lightboxContainer;
 
 for (let i=0; i< mklbItems.length; i++) {
     let mklbItem = mklbItems[i];
@@ -16,10 +17,12 @@ for (let i=0; i< mklbItems.length; i++) {
 }
 
 function _mklbOpen(mklbItem) {
-    let lightboxContainer = document.createElement('div');
+    lightboxContainer = document.createElement('div');
     lightboxContainer.id = "mkLightboxContainer";
 
-    if('videoSrc' in mklbItem.dataset) {
+    if('galerie' in mklbItem.dataset) {
+        _mklbAddImage(mklbItem);
+    } else if('videoSrc' in mklbItem.dataset) {
         let video = document.createElement('video');
         video.setAttribute('autoplay', true);
         video.setAttribute('controls', true);
@@ -31,9 +34,7 @@ function _mklbOpen(mklbItem) {
         video.appendChild(source);
         lightboxContainer.appendChild(video);
     } else {
-        let image = document.createElement('img');
-        image.src = ('src' in mklbItem.dataset) ? mklbItem.dataset.src : mklbItem.src;
-        lightboxContainer.appendChild(image);
+        _mklbAddImage(mklbItem);
     }
 
     let closeIconContainer = document.createElement('div');
@@ -46,4 +47,10 @@ function _mklbOpen(mklbItem) {
     lightboxContainer.addEventListener('click', () => {
         document.getElementById('mkLightboxContainer').remove()
     })
+}
+
+function _mklbAddImage(item) {
+    let image = document.createElement('img');
+    image.src = ('src' in item.dataset) ? item.dataset.src : item.src;
+    lightboxContainer.appendChild(image);
 }

@@ -33,7 +33,7 @@ img {
     height: auto;
 }
 
-.mklbImage:hover {
+.mklbItem:hover {
     cursor: pointer;
     font-style: italic;
 }
@@ -77,4 +77,16 @@ img {
 
 .grid img {
     width: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .grid-2-sm {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .grid-12-xs {
+        grid-template-columns: 1fr;
+    }
 }
