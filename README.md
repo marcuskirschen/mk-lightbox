@@ -1,6 +1,8 @@
 # MK Lightbox
 A very simple pure javascript lightbox script for images and videos.
 
+Demo: <https://mkirschen.de/mk-scripts/mk-lightbox/>
+
 ## Lightbox for images
 To open an image in the lightbox, simply add the class `mklbItem`.
 ```html
