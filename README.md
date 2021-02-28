@@ -27,3 +27,11 @@ MP4 videos can also be played in the lightbox by adding the `data-video-src` att
 ```html
 <img class="mklbItem" src="thumbnail.jpg" data-video-src="movie.mp4" />
 ```
+
+## Lightbox for YouTube videos
+If a YouTube video is to be played in the lightbox, the `mklbItem` class is supplemented with the video ID in the `data-youtube-id` attribute.
+Example for the Youtube video `https://www.youtube.com/watch?v=wuo13FrNX6g`
+```html
+<a href="#" class="mklbItem" data-youtube-id="wuo13FrNX6g">Open the Youtube video in the lightbox.</a>
+```
+I use the Privacy Enhanced Mode, so the domain for the embed URL in the HTML will changed from https://www.youtube.com to https://www.youtube-nocookie.com.
