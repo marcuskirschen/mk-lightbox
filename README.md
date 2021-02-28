@@ -29,7 +29,7 @@ MP4 videos can also be played in the lightbox by adding the `data-video-src` att
 ```
 
 ## Lightbox for YouTube videos
-If a YouTube video is to be played in the lightbox, the `mklbItem` class is supplemented with the video ID in the `data-youtube-id` attribute.
+If a YouTube video should be played in the lightbox, the `mklbItem` class and the `data-youtube-id` attribute with the video ID must be inserted.
 Example for the Youtube video `https://www.youtube.com/watch?v=wuo13FrNX6g`
 ```html
 <a href="#" class="mklbItem" data-youtube-id="wuo13FrNX6g">Open the Youtube video in the lightbox.</a>
