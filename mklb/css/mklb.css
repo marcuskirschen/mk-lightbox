@@ -68,6 +68,11 @@ section.imageContainer {
     height: auto;
 }
 
+#mkLightboxContainer #yt-video {
+    width: 75vw;
+    height: 42.1875vw; /* 75*9/16 */
+}
+
 .mklbItem:hover {
     cursor: pointer;
     font-style: italic;

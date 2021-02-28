@@ -29,6 +29,8 @@ function _mklbOpen(mklbItem) {
         _mklbAddGallery(mklbItem);
     } else if('videoSrc' in mklbItem.dataset) {
         lightboxContainer.appendChild(_mklbAddVideo(mklbItem));
+    } else if('youtubeId' in mklbItem.dataset) {
+        lightboxContainer.appendChild(_mklbAddYoutubeVideo(mklbItem));
     } else {
         lightboxContainer.appendChild(_mklbAddImage(mklbItem));
     }
@@ -61,6 +63,16 @@ function _mklbAddVideo(item) {
     return video;
 }
 
+function _mklbAddYoutubeVideo(item) {
+    let iframe = document.createElement('iframe');
+    iframe.id = "yt-video";
+    iframe.setAttribute('frameborder', "0");
+    iframe.setAttribute('allow', "autoplay; encrypted-media");
+    iframe.setAttribute('allowfullscreen', "");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + item.dataset.youtubeId;
+    return iframe;
+}
+
 function _mklbAddGallery(currentItem) {
     let gallery = [];
     let index = 0;
@@ -76,7 +88,7 @@ function _mklbAddGallery(currentItem) {
             }
             let imageContainer = document.createElement('section');
             imageContainer.className = 'imageContainer';
-            imageContainer.appendChild((_mklbAddImage(mklbItems[i])));
+            imageContainer.appendChild(_mklbAddImage(mklbItems[i]));
             mklbInner.appendChild(imageContainer);
         };
     }
