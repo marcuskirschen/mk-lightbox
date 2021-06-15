@@ -150,7 +150,7 @@ function _mklbSetAutoGallery() {
     play.innerHTML = svgIcons.play;
 	play.addEventListener('click', function() {
 		_mklbPlayAutoGallery();
-		document.getElementById('controlContainer').classList.toggle("stop");
+		document.getElementById('controlContainer').classList.remove("stop");
 	});
 	
 	let controlContainer = document.createElement('div');
@@ -172,7 +172,7 @@ function _mklbPlayAutoGallery() {
 
 function _mklbStopAutoGallery() {
 	clearInterval(interval);
-	document.getElementById('controlContainer').classList.toggle("stop");
+	document.getElementById('controlContainer').classList.add("stop");
 }
 
 function _mklbSlide(slideToPrev) {
