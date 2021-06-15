@@ -22,7 +22,7 @@ In order to switch between the images in the lightbox, the `data-gallery` attrib
 <img class="mklbItem" src="thumbnail3.jpg" data-src="image3.jpg" data-gallery="gallery1" />
 ```
 
-If the gallery in the lightbox is to run automatically, the `data-auto` attribute must be added to only one element of the gallery with the time in ms between the slides.
+**UPDATED**: If the gallery in the lightbox is to run automatically, the `data-auto` attribute must be added to only one element of the gallery with the time in ms between the slides.
 ```html
 <img class="mklbItem" src="thumbnail3.jpg" data-src="image3.jpg" data-gallery="gallery1" data-auto="2000" />
 ```
