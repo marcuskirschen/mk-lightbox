@@ -94,7 +94,9 @@ section.imageContainer {
 
 #closeIconContainer svg,
 #prev svg,
-#next svg{
+#next svg,
+#stopGallery svg, 
+#playGallery svg{
     fill: white;
 }
 
@@ -150,6 +152,31 @@ section.imageContainer {
 
 .grid img {
     width: 100%;
+}
+
+#controlContainer {
+    position: absolute;
+    top: 1em;
+    left: .5em;
+    display: flex;
+}
+
+#controlContainer > div {
+    width: 2em;
+}
+
+#controlContainer > div:hover {
+    cursor: pointer;
+}
+
+#controlContainer #stopGallery,
+#controlContainer.stop #playGallery{
+    opacity: 0.5;
+}
+
+#controlContainer.stop #stopGallery,
+#controlContainer #playGallery{
+    opacity: 1
 }
 
 @media screen and (max-width: 768px){
