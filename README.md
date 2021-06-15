@@ -22,6 +22,11 @@ In order to switch between the images in the lightbox, the `data-gallery` attrib
 <img class="mklbItem" src="thumbnail3.jpg" data-src="image3.jpg" data-gallery="gallery1" />
 ```
 
+If the gallery in the lightbox is to run automatically, the `data-auto` attribute must be added to only one element of the gallery with the time in ms between the slides.
+```html
+<img class="mklbItem" src="thumbnail3.jpg" data-src="image3.jpg" data-gallery="gallery1" data-auto="2000" />
+```
+
 ## Lightbox for mp4 videos
 MP4 videos can also be played in the lightbox by adding the `data-video-src` attribute in addition to the `mklbItem` class.
 ```html
