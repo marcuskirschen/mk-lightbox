@@ -48,4 +48,4 @@ Example for the Vimeo video `https://vimeo.com/226053498`
 ```html
 <a href="#" class="mklbItem" data-vimeo-id="226053498">Open the Vimeo video in the lightbox.</a>
 ```
-I use the 'Do-Not-Tracking' mode. 
+I use the 'Do-Not-Track' mode. 
