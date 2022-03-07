@@ -40,3 +40,12 @@ Example for the Youtube video `https://www.youtube.com/watch?v=wuo13FrNX6g`
 <a href="#" class="mklbItem" data-youtube-id="wuo13FrNX6g">Open the Youtube video in the lightbox.</a>
 ```
 I use the Privacy Enhanced Mode, so the domain for the embed URL in the HTML will changed from https://www.youtube.com to https://www.youtube-nocookie.com.
+
+
+## Lightbox for Vimeo videos
+If a Vimeo video should be played in the lightbox, the `mklbItem` class and the `data-vimeo-id` attribute with the video ID must be inserted.
+Example for the Vimeo video `https://vimeo.com/226053498`
+```html
+<a href="#" class="mklbItem" data-vimeo-id="226053498">Open the Vimeo video in the lightbox.</a>
+```
+I use the 'Do-Not-Tracking' mode. 
